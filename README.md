@@ -3,7 +3,7 @@
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 9.0.2.
 
 ## Before run
-For run project you need to install `node and Angular CLI`
+For the run project, you need to install `NodeJS and Angular CLI`
 
 ## Development server
 
