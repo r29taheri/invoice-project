@@ -1,0 +1,21 @@
+input.ng-invalid.ng-touched {
+  border-color: #DD2C00;
+}
+
+.form-container {
+  padding: 20px;
+}
+
+.c-pointer {
+  cursor: pointer;
+}
+
+.box {
+  width: 400px;
+  padding: 10px;
+  margin: 30px auto 0;
+  box-shadow: 2px 1px 8px 0px #e3e3e3;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+}

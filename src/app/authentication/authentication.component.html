@@ -1,0 +1,7 @@
+  <app-login *ngIf="login"></app-login>
+  <app-register *ngIf="!login"></app-register>
+  <div class="text-center">
+    <a class="text-primary c-pointer" (click)="login = !login">
+      {{login ? 'Create account' : 'Login to your account'}}
+    </a>
+  </div>

@@ -1,0 +1,23 @@
+.modalWrapper {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  background-color: rgba($color: #000000, $alpha: .8);
+}
+.modal--dialog {
+  width: 50%;
+  min-height: 200px;
+  max-height: 95%;
+  border-radius: 5px;
+  background-color: #fff;
+  overflow: auto;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
+}

@@ -1,0 +1,102 @@
+<div #content class="wrapper">
+  <header class="header">
+    <h1 class="header--title">Invoice</h1>
+    <div class="header--detail">
+      <div class="detail--box">
+        <p>{{user.phone}}</p>
+        <p>{{user.email}}</p>
+        <p>{{user.website}}</p>
+      </div>
+      <div class="detail--box">
+        <p>{{user.address}}</p>
+        <p>
+          {{user.city}}
+          <span *ngIf="user.state">, </span>
+          {{user.state}}
+          <span *ngIf="user.country">, </span>
+          {{user.country}}
+        </p>
+        <p>{{user.zipCode}}</p>
+      </div>
+    </div>
+  </header>
+  <div class="content">
+    <div class="invoice--information">
+      <div class="client--information">
+        <div class="information--detail">
+          <p class="text-muted">Billed To</p>
+          <p>{{clientDetail.fullName}}</p>
+          <p>{{clientDetail.address}}</p>
+          <p>{{clientDetail.city}}, {{clientDetail.state}}, {{clientDetail.country}}</p>
+          <p>{{clientDetail.zipCode}}</p>
+        </div>
+        <div class="information--detail">
+          <p class="text-muted">Invoice Number</p>
+          <p>{{invoiceDetail.id}}</p>
+          <p class="text-muted">Date Of Issue</p>
+          <p>{{invoiceDetail.date | date: 'shortDate'}}</p>
+        </div>
+      </div>
+      <div class="invoice--total">
+        <p class="text-muted text-right">Invoice Total</p>
+        <h1>$ {{invoiceDetail.total | number: '1.2'}}</h1>
+      </div>
+    </div>
+    <div class="table-responsive">
+      <table class="table table-hover invoice--detail--table">
+        <thead>
+          <tr class="text__header">
+            <th scope="col">Description</th>
+            <th scope="col">Unit Cost</th>
+            <th scope="col">Qty / Hr Rate</th>
+            <th scope="col">Amount</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of invoiceDetail.items">
+            <td>
+              <span>{{item.name}}</span>
+              <small class="form-text text-muted">{{item.description}}</small>
+            </td>
+            <td>$ {{item.cost}}</td>
+            <td>{{item.qtyHr}}</td>
+            <td>{{item.amount}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer--terms">
+      <p class="text-muted">
+        Invoice Terms
+      </p>
+      <p>
+        Ex. Please pay your invoice by...
+      </p>
+    </div>
+    <div class="footer--detail">
+      <ul>
+        <li>
+          <p class="text__header">Sub total</p>
+          <p>${{invoiceDetail.subTotal | number: '1.2'}}</p>
+        </li>
+        <li>
+          <p class="text__header">Tax</p>
+          <p>${{invoiceDetail.tax | number: '1.2'}}</p>
+        </li>
+        <li>
+          <p class="text__header">Total</p>
+          <p>${{invoiceDetail.total | number: '1.2'}}</p>
+        </li>
+        <li>
+          <p class="text__header">Amount Due (USD)</p>
+          <p>${{invoiceDetail.total | number: '1.2'}}</p>
+        </li>
+      </ul>
+    </div>
+  </footer>
+</div>
+<div class="text-center">
+  <button type="button" class="btn btn-info btn-block" (click)="onGeneratePdf()">Generate PDF</button>
+</div>

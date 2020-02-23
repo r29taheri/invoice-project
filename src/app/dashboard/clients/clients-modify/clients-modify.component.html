@@ -1,0 +1,39 @@
+<div>
+  <form class="form-container" (ngSubmit)="onSubmit()" [formGroup]="clientForm">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="clientModifyFullName">Full Name</label>
+        <input type="text" class="form-control" id="clientModifyFullName" placeholder="Full Name" formControlName="fullName">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="clientModifyCountry">Country</label>
+        <input type="text" class="form-control" id="clientModifyCountry" placeholder="Country" formControlName="country">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="clientModifyAddress">Address</label>
+      <input type="text" class="form-control" id="clientModifyAddress" placeholder="1234 Main St" formControlName="address">
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="clientModifyCity">City</label>
+        <input type="text" class="form-control" id="clientModifyCity" formControlName="city">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="clientModifyState">State</label>
+        <input type="text" class="form-control" id="clientModifyState" formControlName="state">
+      </div>
+      <div class="form-group col-md-2">
+        <label for="clientModifyZipCode">Zip code</label>
+        <input type="number" class="form-control" id="clientModifyZipCode" formControlName="zipCode">
+      </div>
+    </div>
+    <div *ngIf="!clientForm.get('zipCode').valid && clientForm.get('zipCode').touched" class="alert alert-danger" role="alert">
+      Zip code should be number and more thant 5 length.
+    </div>
+    <button type="submit" class="btn btn-success mr-1" [disabled]="!clientForm.valid">
+      {{clientInfo ? 'Update' : 'Add'}}
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="onClose()">Cancel</button>
+  </form>
+</div>

@@ -1,0 +1,17 @@
+<app-navbar></app-navbar>
+<div class="container-fluid mt-2">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="list-group">
+        <a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="list-group-item list-group-item-action">Invoices</a>
+        <a routerLink="/clients" routerLinkActive="active" class="list-group-item list-group-item-action">
+          Clients
+        </a>
+        <a routerLink="/info" routerLinkActive="active" class="list-group-item list-group-item-action">Your info</a>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

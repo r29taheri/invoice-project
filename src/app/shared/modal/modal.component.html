@@ -1,0 +1,5 @@
+<div class="modalWrapper" (click)="onClose()">
+  <div (click)="$event.stopPropagation()" class="modal--dialog">
+    <ng-content></ng-content>
+  </div>
+</div>

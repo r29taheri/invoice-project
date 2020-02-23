@@ -1,0 +1,49 @@
+<div class="form-container">
+  <form (ngSubmit)="onSubmit()" [formGroup]="invoiceForm">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="invoiceClientList">Select client</label>
+        <select class="form-control" formControlName="client" id="invoiceClientList">
+          <option *ngFor="let client of (clients | async).userClients" [value]=client.id>{{client.fullName}}</option>
+        </select>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="invoiceName">Name</label>
+        <input type="text" class="form-control" id="invoiceName" placeholder="Invoice Name" formControlName="name">
+      </div>
+    </div>
+    <div class="items--box" formArrayName="items">
+      <h5>Items</h5>
+      <div class="item--box form-row" *ngFor="let hobbyControl of itemsList; let i = index" [formGroupName]="i">
+        <div class="form-group col-md-4">
+          <label [for]="'invoiceItemName-' + i">Name</label>
+          <input type="text" class="form-control" [id]="'invoiceItemName-' + i" placeholder="Invoice Name" formControlName="name">
+        </div>
+        <div class="form-group col-md-8">
+          <label for="'invoiceItemDescription-' + i">Description</label>
+          <input type="text" class="form-control" [id]="'invoiceItemDescription-' + i" placeholder="Invoice Description" formControlName="description">
+        </div>
+          <div class="form-group col-md-4">
+            <label [for]="'invoiceItemCost-' + i">Cost</label>
+            <input type="number" class="form-control" [id]="'invoiceItemCost-' + i" formControlName="cost">
+          </div>
+          <div class="form-group col-md-4">
+            <label [for]="'invoiceItemQtyHr-' + i">Qty / Hr Rate</label>
+            <input type="number" class="form-control" [id]="'invoiceItemQtyHr-' + i" formControlName="qtyHr">
+          </div>
+          <div class="form-group col-md-4">
+            <label [for]="'invoiceItemAmount-' + i">Amount</label>
+            <input type="number" class="form-control" [id]="'invoiceItemAmount-' + i" formControlName="amount">
+          </div>
+      </div>
+      <div class="btn-group btn--group--custom btn-group-sm" role="group">
+        <button type="button" class="btn btn-info" (click)="onAddItem()">+</button>
+        <button type="button" class="btn btn-danger" (click)="onRemoveItem()" [disabled]="itemsList.length < 2">-</button>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success mr-1" [disabled]="!invoiceForm.valid">
+      {{invoiceInfo ? 'Update' : 'Add'}}
+    </button>
+    <button type="button" class="btn btn-secondary" (click)="onClose()">Cancel</button>
+  </form>
+</div>
